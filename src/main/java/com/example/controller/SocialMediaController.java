@@ -53,9 +53,16 @@ public class SocialMediaController {
     }
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
-    public @ResponseBody Account login(@RequestBody Account existingUser) {
-        // Logic to authenticate user login
-        return null;
+    public @ResponseBody ResponseEntity<Account> login(@RequestBody Account existingUser) {
+        //Account loginAttempt=accountService.login(existingUser);
+        if(accountService.login(existingUser)!=null)
+        {
+          return ResponseEntity.status(200).body(existingUser);
+        }
+        else
+        {
+          return ResponseEntity.status(401).body(existingUser);
+        }
     }
 
 }
