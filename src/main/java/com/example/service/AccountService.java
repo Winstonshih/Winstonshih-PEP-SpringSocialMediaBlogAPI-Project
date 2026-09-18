@@ -15,7 +15,7 @@ public class AccountService {
   }
   public Account register(Account account)
   {
-    Account newUser=accountRepository.findAccountByUserName(account.getUsername());
+    Account newUser=accountRepository.findAccountByUsername(account.getUsername());
     if(newUser==null)
     {
       return accountRepository.save(account);
@@ -24,7 +24,7 @@ public class AccountService {
   }
   public Account login(Account account)
   {
-    Account existingUser=accountRepository.findAccountByUserName(account.getUsername());
+    Account existingUser=accountRepository.findAccountByUsername(account.getUsername());
     if(existingUser!=null && existingUser.getPassword().equals(account.getPassword()))
     {
       return existingUser;
