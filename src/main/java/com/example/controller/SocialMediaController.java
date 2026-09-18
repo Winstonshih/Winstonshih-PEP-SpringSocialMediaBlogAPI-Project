@@ -45,7 +45,7 @@ public class SocialMediaController {
       {
         return ResponseEntity.status(400).body(newUser);
       }
-      else if(accountRepository.findAccountByUserName(newUser.getUsername())!=null)
+      else if(accountRepository.findAccountByUsername(newUser.getUsername())!=null)
       {
         return ResponseEntity.status(409).body(newUser);
       }
