@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,17 +24,19 @@ import com.example.service.MessageService;
 @RestController
 @RequestMapping("/api/users")
 public class SocialMediaController {
-  AccountService accountService;
-  MessageService messageService;
+  private AccountService accountService;
+  private MessageService messageService;
   private AccountRepository accountRepository;
   /**
    * No params constructor that instantiates AccountService and MessageService objects that will be used to construct 
    * eendpoints for REST API.
    */
-  public SocialMediaController()
+  @Autowired
+  public SocialMediaController(AccountService accountService, MessageService messageService, AccountRepository accountRepository)
   {
-      this.accountService= new AccountService();
-      this.messageService=new MessageService();
+      this.accountService= accountService;
+      this.messageService=messageService;
+      this.accountRepository=accountRepository;
   }
   
   @RequestMapping(value="/register", method = RequestMethod.POST)
