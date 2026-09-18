@@ -22,7 +22,6 @@ import com.example.service.MessageService;
  * refer to prior mini-project labs and lecture materials for guidance on how a controller may be built.
  */
 @RestController
-@RequestMapping("/api/users")
 public class SocialMediaController {
   private AccountService accountService;
   private MessageService messageService;
