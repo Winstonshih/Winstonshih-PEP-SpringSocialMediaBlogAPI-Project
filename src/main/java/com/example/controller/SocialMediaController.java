@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.entity.Account;
+import com.example.repository.AccountRepository;
 import com.example.service.AccountService;
 import com.example.service.MessageService;
 /**
@@ -24,6 +25,7 @@ import com.example.service.MessageService;
 public class SocialMediaController {
   AccountService accountService;
   MessageService messageService;
+  private AccountRepository accountRepository;
   /**
    * No params constructor that instantiates AccountService and MessageService objects that will be used to construct 
    * eendpoints for REST API.
@@ -35,9 +37,17 @@ public class SocialMediaController {
   }
   
   @RequestMapping(value="/register", method = RequestMethod.POST)
-    public @ResponseBody Account register(@RequestBody Account newUser) {
-       
-        Account newAccount=accountService.createAccount(newUser);
+    public @ResponseBody ResponseEntity<Account> register(@RequestBody Account newUser) {
+      if(newUser.getPassword().length()<4||newUser.getUsername().length()==0)
+      {
+        return ResponseEntity.status(400).body(newUser);
+      }
+      else if(accountRepository.findAccountByUserName(newUser.getUsername())!=null)
+      {
+        return ResponseEntity.status(409).body(newUser);
+      }
+      Account newAccount=accountService.register(newUser);
+      return ResponseEntity.status(200).body(newAccount);
     }
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
