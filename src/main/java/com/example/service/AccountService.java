@@ -9,10 +9,6 @@ import com.example.repository.AccountRepository;
 public class AccountService {
   private AccountRepository accountRepository;
   @Autowired
-  public AccountService()
-  {
-    
-  }
   public AccountService(AccountRepository accountRepository)
   {
     this.accountRepository=accountRepository;
