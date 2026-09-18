@@ -57,7 +57,7 @@ public class SocialMediaController {
         //Account loginAttempt=accountService.login(existingUser);
         if(accountService.login(existingUser)!=null)
         {
-          return ResponseEntity.status(200).body(existingUser);
+          return ResponseEntity.status(200).body(accountService.login(existingUser));
         }
         else
         {
