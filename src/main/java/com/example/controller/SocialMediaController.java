@@ -48,13 +48,11 @@ public class SocialMediaController {
       {
         return ResponseEntity.status(409).body(newUser);
       }
-      Account newAccount=accountService.register(newUser);
-      return ResponseEntity.status(200).body(newAccount);
+      return ResponseEntity.status(200).body(accountService.register(newUser));
     }
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Account> login(@RequestBody Account existingUser) {
-        //Account loginAttempt=accountService.login(existingUser);
         if(accountService.login(existingUser)!=null)
         {
           return ResponseEntity.status(200).body(accountService.login(existingUser));
