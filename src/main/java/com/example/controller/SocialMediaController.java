@@ -41,7 +41,7 @@ public class SocialMediaController {
   
   @RequestMapping(value="/register", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Account> register(@RequestBody Account newUser) {
-      if(newUser.getPassword().length()<4||newUser.getUsername().length()==0)
+      if(newUser.getPassword().length()<4||newUser.getUsername().length()==0||newUser.getUsername()==null||newUser.getPassword()!=null)
       {
         return ResponseEntity.status(400).body(newUser);
       }
