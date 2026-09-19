@@ -32,7 +32,7 @@ public class MessageService {
     }
     return null;
   }
-  public int deleteAllPostsById(Integer id)
+  public Integer deleteAllPostsById(Integer id)
   {
     if(messageRepository.findById(id).isPresent())
     {
