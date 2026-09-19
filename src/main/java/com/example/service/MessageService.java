@@ -7,15 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.entity.Message;
+import com.example.repository.AccountRepository;
 import com.example.repository.MessageRepository;
 
 @Service
 public class MessageService {
   private MessageRepository messageRepository;
+  private AccountRepository accountRepository;
   @Autowired
-  public MessageService(MessageRepository messageRepository)
+  public MessageService(MessageRepository messageRepository, AccountRepository accountRepository)
   {
     this.messageRepository=messageRepository;
+    this.accountRepository=accountRepository;
   }
   public Message createMessage(Message newMessage)
   {
@@ -24,6 +27,10 @@ public class MessageService {
       return null;
     }
     if(newMessage.getPostedBy()==null)
+    {
+      return null;
+    }
+    if(!accountRepository.existsById(newMessage.getPostedBy()))
     {
       return null;
     }
