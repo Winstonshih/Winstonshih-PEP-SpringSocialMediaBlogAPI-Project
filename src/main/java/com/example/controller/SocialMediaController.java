@@ -79,7 +79,6 @@ public class SocialMediaController {
     }
     @RequestMapping(value="/messages", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Message>> getAllPosts() {
-        if()
         return ResponseEntity.status(200).body(messageService.getAllPosts());
     }
 }
