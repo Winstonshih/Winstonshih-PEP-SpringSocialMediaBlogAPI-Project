@@ -41,11 +41,16 @@ public class MessageService {
     }
     return null;
   }
-  public Integer updateAllPostsById(Integer id)
+  public Integer updateAllPostsById(Integer id, String updateText)
   {
+    if(updateText==null||updateText.length()==0||updateText.length()>255)
+    {
+      return null;
+    }
     if(messageRepository.findById(id).isPresent())
     {
-      messageRepository.findById(id);
+      messageRepository.findById(id).get().setMessageText(updateText);
+      messageRepository.save(messageRepository.findById(id).get());
       return 1;
     }
     return null;
