@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,7 +83,7 @@ public class SocialMediaController {
         return ResponseEntity.status(200).body(messageService.getAllPosts());
     }
     @RequestMapping(value="/messages/{message_id}", method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<Message> getAllPostsById(@RequestBody long id) {
+    public @ResponseBody ResponseEntity<Message> getAllPostsById(@PathVariable("message_id") long id) {
         return ResponseEntity.status(200).body(messageService.getAllPostsById(id));
     }
 }
