@@ -20,6 +20,11 @@ public class MessageService {
     this.messageRepository=messageRepository;
     this.accountRepository=accountRepository;
   }
+  /**
+   * 
+   * @param newMessage
+   * @return
+   */
   public Message createMessage(Message newMessage)
   {
     if(newMessage.getMessageText()==null||newMessage.getMessageText().length()==0||newMessage.getMessageText().length()>255)
@@ -39,6 +44,11 @@ public class MessageService {
   public List<Message> getAllPosts() {
     return messageRepository.findAll();
   }
+  /**
+   * 
+   * @param id
+   * @return
+   */
   public Message getAllPostsById(Integer id)
   {
     if(messageRepository.findById(id).isPresent())
@@ -47,6 +57,11 @@ public class MessageService {
     }
     return null;
   }
+  /**
+   * 
+   * @param id
+   * @return
+   */
   public Integer deleteAllPostsById(Integer id)
   {
     if(messageRepository.findById(id).isPresent())
@@ -56,6 +71,12 @@ public class MessageService {
     }
     return null;
   }
+  /**
+   * 
+   * @param id
+   * @param updateText
+   * @return
+   */
   public Integer updateAllPostsById(Integer id, String updateText)
   {
     if(updateText==null||updateText.length()==0||updateText.length()>255)
@@ -70,6 +91,11 @@ public class MessageService {
     }
     return null;
   }
+  /**
+   * 
+   * @param id
+   * @return
+   */
   public List<Message> getAllPostsByUser(Integer id) {
     return messageRepository.findByPostedBy(id);
   }
