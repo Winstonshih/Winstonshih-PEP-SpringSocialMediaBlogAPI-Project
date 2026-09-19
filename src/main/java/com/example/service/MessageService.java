@@ -45,7 +45,7 @@ public class MessageService {
   {
     if(messageRepository.findById(id).isPresent())
     {
-      messageRepository.updateAllPostsById(id);
+      messageRepository.findById(id);
       return 1;
     }
     return null;
