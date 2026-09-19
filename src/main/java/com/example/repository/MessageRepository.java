@@ -6,5 +6,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 public interface MessageRepository extends JpaRepository<Message, Integer>{
   Optional<Message> findById(Integer id);
-  
+
+  void updateAllPostsById(Integer id);
 }
