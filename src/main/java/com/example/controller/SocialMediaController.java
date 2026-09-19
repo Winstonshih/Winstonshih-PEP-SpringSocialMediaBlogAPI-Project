@@ -92,6 +92,10 @@ public class SocialMediaController {
     }
     @RequestMapping(value="/messages/{messageId}", method = RequestMethod.PATCH)
     public @ResponseBody ResponseEntity<Integer> updateAllPostsById(@PathVariable("messageId") Integer id, @PathVariable("messageText") String text) {
-        return ResponseEntity.status(200).body(messageService.updateAllPostsById(id, text));
+        if(messageService.updateAllPostsById(id, text)!=null)
+        {
+          return ResponseEntity.status(200).body(messageService.updateAllPostsById(id, text));
+        }
+        return ResponseEntity.status(400).body(messageService.updateAllPostsById(id, text));
     }
 }
