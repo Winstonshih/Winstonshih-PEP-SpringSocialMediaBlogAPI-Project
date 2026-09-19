@@ -41,4 +41,12 @@ public class MessageService {
     }
     return null;
   }
+  public Message updateAllPostsById(Integer id)
+  {
+    if(messageRepository.findById(id).isPresent())
+    {
+      return messageRepository.updateAllPostsById(id).get();
+    }
+    return null;
+  }
 }

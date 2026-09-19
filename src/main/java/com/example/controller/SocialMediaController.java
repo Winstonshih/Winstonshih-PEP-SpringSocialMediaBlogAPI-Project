@@ -90,4 +90,8 @@ public class SocialMediaController {
     public @ResponseBody ResponseEntity<Integer> deleteAllPostsById(@PathVariable("messageId") Integer id) {
         return ResponseEntity.status(200).body(messageService.deleteAllPostsById(id));
     }
+    @RequestMapping(value="/messages/{messageId}", method = RequestMethod.PATCH)
+    public @ResponseBody ResponseEntity<Integer> updateAllPostsById(@PathVariable("messageId") Integer id) {
+        return ResponseEntity.status(200).body(messageService.updateAllPostsById(id));
+    }
 }
