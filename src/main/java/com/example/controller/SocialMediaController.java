@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -91,7 +92,7 @@ public class SocialMediaController {
         return ResponseEntity.status(200).body(messageService.deleteAllPostsById(id));
     }
     @RequestMapping(value="/messages/{messageId}", method = RequestMethod.PATCH)
-    public @ResponseBody ResponseEntity<Integer> updateAllPostsById(@PathVariable("messageId") Integer id, @PathVariable("messageText") String text) {
+    public @ResponseBody ResponseEntity<Integer> updateAllPostsById(@PathVariable("messageId") Integer id, @RequestBody("messageText") String text) {
         if(messageService.updateAllPostsById(id, text)!=null)
         {
           return ResponseEntity.status(200).body(messageService.updateAllPostsById(id, text));
