@@ -21,7 +21,7 @@ public class MessageService {
   }
   public Message getAllPostsById(long id)
   {
-    if(messageRepository.findById(id)!=null)
+    if(messageRepository.findById(id).isPresent())
     {
       return messageRepository.findById(id).get();
     }
