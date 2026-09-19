@@ -26,10 +26,9 @@ public class MessageService {
   }
   public Message getAllPostsById(Integer id)
   {
-    Optional<Message> i=messageRepository.findById(id);
-    if(i.isPresent())
+    if(messageRepository.findById(id).isPresent())
     {
-      return i.get();
+      return messageRepository.findById(id).get();
     }
     return null;
   }
