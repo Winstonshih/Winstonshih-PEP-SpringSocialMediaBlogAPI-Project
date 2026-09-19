@@ -18,5 +18,13 @@ public class MessageService {
   }
   public List<Message> getAllPosts() {
     return messageRepository.findAll();
-}
+  }
+  public Message getAllPostsById(long id)
+  {
+    if(messageRepository.findById(id)!=null)
+    {
+      return messageRepository.findById(id).get();
+    }
+    return null;
+  }
 }
