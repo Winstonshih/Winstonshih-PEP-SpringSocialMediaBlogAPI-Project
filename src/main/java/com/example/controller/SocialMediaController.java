@@ -81,10 +81,10 @@ public class SocialMediaController {
       {
         return ResponseEntity.status(200).body(messageService.createMessage(newMessage));
       }
-      if(accountRepository.findById(newMessage.getPostedBy()).isPresent())
-      {
-        return ResponseEntity.status(409).build();
-      }
+      //if(accountRepository.findById(newMessage.getPostedBy()).isPresent())
+      //{
+      //  return ResponseEntity.status(409).build();
+      //}
       return ResponseEntity.status(400).build();
     }
     @RequestMapping(value="/messages", method = RequestMethod.GET)
