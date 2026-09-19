@@ -55,4 +55,7 @@ public class MessageService {
     }
     return null;
   }
+  public List<Message> getAllPostsByUser(Integer id) {
+    return messageRepository.findByPostedBy(id);
+  }
 }
