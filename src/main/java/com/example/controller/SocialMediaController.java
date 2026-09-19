@@ -100,7 +100,7 @@ public class SocialMediaController {
         return ResponseEntity.status(400).build();
     }
     @RequestMapping(value="/accounts/{accountId}/messages", method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<List<Message>> retrieveAllPostsByUser(@PathVariable("postedBy") Integer id) {
+    public @ResponseBody ResponseEntity<List<Message>> retrieveAllPostsByUser(@PathVariable("accountId") Integer id) {
         return ResponseEntity.status(200).body(messageService.getAllPostsByUser(id));
     }
 }
