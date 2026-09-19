@@ -16,15 +16,15 @@ public class MessageService {
   {
     this.messageRepository=messageRepository;
   }
+  public Message createMessage(Message newMessage)
+  {
+    return null;
+  }
   public List<Message> getAllPosts() {
     return messageRepository.findAll();
   }
   public Message getAllPostsById(long id)
   {
-    if(messageRepository.findById(id).isPresent())
-    {
-      return messageRepository.findById(id).get();
-    }
-    return null;
+    return messageRepository.findById(id).get();
   }
 }
