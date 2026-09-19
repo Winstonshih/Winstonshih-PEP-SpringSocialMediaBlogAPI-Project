@@ -32,4 +32,13 @@ public class MessageService {
     }
     return null;
   }
+  public int deleteAllPostsById(Integer id)
+  {
+    if(messageRepository.findById(id).isPresent())
+    {
+      messageRepository.deleteById(id);
+      return 1;
+    }
+    return 0;
+  }
 }
