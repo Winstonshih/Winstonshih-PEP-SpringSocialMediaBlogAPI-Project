@@ -19,7 +19,11 @@ public class MessageService {
   }
   public Message createMessage(Message newMessage)
   {
-    if(newMessage.getMessageText()==null||newMessage.getMessageText().length()==0||newMessage.getMessageText().length()>255||newMessage.getPostedBy()==null)
+    if(newMessage.getMessageText()==null||newMessage.getMessageText().length()==0||newMessage.getMessageText().length()>255)
+    {
+      return null;
+    }
+    if(newMessage.getPostedBy()==null)
     {
       return null;
     }
