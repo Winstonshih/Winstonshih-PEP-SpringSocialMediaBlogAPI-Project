@@ -77,7 +77,11 @@ public class SocialMediaController {
     }
     @RequestMapping(value="/messages", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Message> createPost(@RequestBody Message newMessage) {
-        return ResponseEntity.status(200).body(newMessage);
+      if(messageService.createMessage(newMessage)!=null)
+      {
+        return ResponseEntity.status(200).body(messageService.createMessage(newMessage));
+      }
+      return ResponseEntity.status(400).build();
     }
     @RequestMapping(value="/messages", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Message>> getAllPosts() {

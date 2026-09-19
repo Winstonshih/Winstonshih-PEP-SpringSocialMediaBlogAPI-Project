@@ -19,7 +19,11 @@ public class MessageService {
   }
   public Message createMessage(Message newMessage)
   {
-    return null;
+    if(newMessage.getMessageText()==null||newMessage.getMessageText().length()==0||newMessage.getMessageText().length()>255)
+    {
+      return null;
+    }
+    return messageRepository.save(newMessage);
   }
   public List<Message> getAllPosts() {
     return messageRepository.findAll();
