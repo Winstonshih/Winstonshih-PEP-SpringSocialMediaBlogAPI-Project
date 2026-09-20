@@ -60,7 +60,7 @@ public class SocialMediaController {
       return ResponseEntity.status(200).body(accountService.register(newUser));
     }
     /**
-     * Login account eendpoint handler.
+     * Login account endpoint handler.
      * @param existingUser existing user account that will be logged into.
      * @return status code 200 if successful or 401 if login fails.
      */
@@ -76,9 +76,9 @@ public class SocialMediaController {
         }
     }
     /**
-     * 
-     * @param newMessage
-     * @return
+     * Create new message endpoint handler
+     * @param newMessage new message object
+     * @return status 200 if message is created or 400 if it fails.
      */
     @RequestMapping(value="/messages", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Message> createPost(@RequestBody Message newMessage) {
@@ -89,36 +89,36 @@ public class SocialMediaController {
       return ResponseEntity.status(400).build();
     }
     /**
-     * 
-     * @return
+     * Endpoint handler for getting all posts in database.
+     * @return status code 200
      */
     @RequestMapping(value="/messages", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Message>> getAllPosts() {
         return ResponseEntity.status(200).body(messageService.getAllPosts());
     }
     /**
-     * 
-     * @param id
-     * @return
+     * Endpoint handler for getting all posts by message id.
+     * @param id message id
+     * @return status code 200
      */
     @RequestMapping(value="/messages/{messageId}", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Message> getAllPostsById(@PathVariable("messageId") Integer id) {
         return ResponseEntity.status(200).body(messageService.getAllPostsById(id));
     }
     /**
-     * 
-     * @param id
-     * @return
+     * Endpoint handler for deleting all posts by message id.
+     * @param id message id
+     * @return status code 200
      */
     @RequestMapping(value="/messages/{messageId}", method = RequestMethod.DELETE)
     public @ResponseBody ResponseEntity<Integer> deleteAllPostsById(@PathVariable("messageId") Integer id) {
         return ResponseEntity.status(200).body(messageService.deleteAllPostsById(id));
     }
     /**
-     * 
-     * @param id
-     * @param message
-     * @return
+     * Endpoint handler for updating all posts by message id.
+     * @param id message id
+     * @param message updated message text 
+     * @return status code 200 if successful or code 400 if it fails.
      */
     @RequestMapping(value="/messages/{messageId}", method = RequestMethod.PATCH)
     public @ResponseBody ResponseEntity<Integer> updateAllPostsById(@PathVariable("messageId") Integer id, @RequestBody Message message) {
@@ -129,9 +129,9 @@ public class SocialMediaController {
         return ResponseEntity.status(400).build();
     }
     /**
-     * 
-     * @param id
-     * @return
+     * Endpoint handler for retrieving all posts by user.
+     * @param id account id
+     * @return status code 200 if successful.
      */
     @RequestMapping(value="/accounts/{accountId}/messages", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Message>> retrieveAllPostsByUser(@PathVariable("accountId") Integer id) {
