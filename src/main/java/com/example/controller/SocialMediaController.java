@@ -32,8 +32,8 @@ public class SocialMediaController {
   private MessageService messageService;
   private AccountRepository accountRepository;
   /**
-   * No params constructor that instantiates AccountService and MessageService objects that will be used to construct 
-   * eendpoints for REST API.
+   * No params constructor that instantiates AccountService, AccountRepository,  and MessageService objects that will be used to construct 
+   * endpoints for REST API.
    */
   @Autowired
   public SocialMediaController(AccountService accountService, MessageService messageService, AccountRepository accountRepository)
@@ -43,9 +43,9 @@ public class SocialMediaController {
       this.accountRepository=accountRepository;
   }
   /**
-   * 
-   * @param newUser
-   * @return
+   * Register account endpoint handler.
+   * @param newUser new user account that will be registered.
+   * @return status code 200 if account registration is successful or 409 if not successful.
    */
   @RequestMapping(value="/register", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Account> register(@RequestBody Account newUser) {
@@ -60,9 +60,9 @@ public class SocialMediaController {
       return ResponseEntity.status(200).body(accountService.register(newUser));
     }
     /**
-     * 
-     * @param existingUser
-     * @return
+     * Login account eendpoint handler.
+     * @param existingUser existing user account that will be logged into.
+     * @return status code 200 if successful or 401 if login fails.
      */
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Account> login(@RequestBody Account existingUser) {
