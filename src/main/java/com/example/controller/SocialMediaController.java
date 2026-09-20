@@ -75,6 +75,11 @@ public class SocialMediaController {
           return ResponseEntity.status(401).body(existingUser);
         }
     }
+    /**
+     * 
+     * @param newMessage
+     * @return
+     */
     @RequestMapping(value="/messages", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Message> createPost(@RequestBody Message newMessage) {
       if(messageService.createMessage(newMessage)!=null)
@@ -83,18 +88,38 @@ public class SocialMediaController {
       }
       return ResponseEntity.status(400).build();
     }
+    /**
+     * 
+     * @return
+     */
     @RequestMapping(value="/messages", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Message>> getAllPosts() {
         return ResponseEntity.status(200).body(messageService.getAllPosts());
     }
+    /**
+     * 
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/messages/{messageId}", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Message> getAllPostsById(@PathVariable("messageId") Integer id) {
         return ResponseEntity.status(200).body(messageService.getAllPostsById(id));
     }
+    /**
+     * 
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/messages/{messageId}", method = RequestMethod.DELETE)
     public @ResponseBody ResponseEntity<Integer> deleteAllPostsById(@PathVariable("messageId") Integer id) {
         return ResponseEntity.status(200).body(messageService.deleteAllPostsById(id));
     }
+    /**
+     * 
+     * @param id
+     * @param message
+     * @return
+     */
     @RequestMapping(value="/messages/{messageId}", method = RequestMethod.PATCH)
     public @ResponseBody ResponseEntity<Integer> updateAllPostsById(@PathVariable("messageId") Integer id, @RequestBody Message message) {
         if(messageService.updateAllPostsById(id, message.getMessageText())!=null)
@@ -103,6 +128,11 @@ public class SocialMediaController {
         }
         return ResponseEntity.status(400).build();
     }
+    /**
+     * 
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/accounts/{accountId}/messages", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Message>> retrieveAllPostsByUser(@PathVariable("accountId") Integer id) {
         return ResponseEntity.status(200).body(messageService.getAllPostsByUser(id));
