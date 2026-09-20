@@ -1,7 +1,6 @@
 package com.example.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +13,11 @@ import com.example.repository.MessageRepository;
 public class MessageService {
   private MessageRepository messageRepository;
   private AccountRepository accountRepository;
+  /**
+   * Constructor for instantiating MessageRepository or AccountRepository objects
+   * @param messageRepository MessageRepository object
+   * @param accountRepository AccountRepository object
+   */
   @Autowired
   public MessageService(MessageRepository messageRepository, AccountRepository accountRepository)
   {
@@ -21,9 +25,9 @@ public class MessageService {
     this.accountRepository=accountRepository;
   }
   /**
-   * 
-   * @param newMessage
-   * @return
+   * Method to create a new social media post.
+   * @param newMessage message that will be added into message repository
+   * @return new message if creation is successful or null if message creation fails.
    */
   public Message createMessage(Message newMessage)
   {
@@ -41,13 +45,17 @@ public class MessageService {
     }
     return messageRepository.save(newMessage);
   }
+  /**
+   * Method to retrieve all posts in database.
+   * @return all posts in message repository
+   */
   public List<Message> getAllPosts() {
     return messageRepository.findAll();
   }
   /**
-   * 
-   * @param id
-   * @return
+   * Method to get all posts by a message id.
+   * @param id message id
+   * @return all posts associated with message id
    */
   public Message getAllPostsById(Integer id)
   {
@@ -58,9 +66,9 @@ public class MessageService {
     return null;
   }
   /**
-   * 
-   * @param id
-   * @return
+   * Method to delete all posts based on message id.
+   * @param id message id
+   * @return 1 if row is deleted or null if not.
    */
   public Integer deleteAllPostsById(Integer id)
   {
@@ -72,10 +80,10 @@ public class MessageService {
     return null;
   }
   /**
-   * 
-   * @param id
-   * @param updateText
-   * @return
+   * Method to update all posts based on message id.
+   * @param id message id
+   * @param updateText updated text for post
+   * @return 1 if row is updated or null if no rows are updated.
    */
   public Integer updateAllPostsById(Integer id, String updateText)
   {
@@ -92,9 +100,9 @@ public class MessageService {
     return null;
   }
   /**
-   * 
-   * @param id
-   * @return
+   * Method to retrieve all social media posts based on user id.
+   * @param id user id
+   * @return account tied to user id.
    */
   public List<Message> getAllPostsByUser(Integer id) {
     return messageRepository.findByPostedBy(id);
