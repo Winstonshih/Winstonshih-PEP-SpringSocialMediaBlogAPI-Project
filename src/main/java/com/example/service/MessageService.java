@@ -102,7 +102,7 @@ public class MessageService {
   /**
    * Method to retrieve all social media posts based on user id.
    * @param id user id
-   * @return account tied to user id.
+   * @return Account tied to account id.
    */
   public List<Message> getAllPostsByUser(Integer id) {
     return messageRepository.findByPostedBy(id);
