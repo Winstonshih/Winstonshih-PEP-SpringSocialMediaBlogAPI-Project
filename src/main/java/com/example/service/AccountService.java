@@ -10,7 +10,7 @@ public class AccountService {
   private AccountRepository accountRepository;
   /**
    * Constructor for accountRepository objects.
-   * @param accountRepository accountRepository object
+   * @param accountRepository AccountRepository object
    */
   @Autowired
   public AccountService(AccountRepository accountRepository)
